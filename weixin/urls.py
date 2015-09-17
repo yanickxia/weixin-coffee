@@ -13,12 +13,10 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
-from django.contrib import admin
-from weixin import urls as weixin_url
+from django.conf.urls import url
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^json/', 'weixin.views._json', name='_json'),
+    url(r'^$', 'weixin.views.index', name='home'),
+    url(r'^weixin', 'weixin.views.weixin', name='weixin')
 ]
-
-urlpatterns += weixin_url.urlpatterns
