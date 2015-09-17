@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from utils import ResponseUtils
 from weixin.services import validate
+from xml.etree import ElementTree
 
 
 def index(request):
@@ -9,9 +9,18 @@ def index(request):
 
 
 def weixin(request):
-    if request.method != 'GET':
-        return HttpResponse("False")
+    if request.method == 'GET':
+        return process_get(request)
+    else:
+        return process_post(request)
 
+
+def _json(request):
+    response_data = {'x': 'xx'}
+    return ResponseUtils.to_json(response_data)
+
+
+def process_get(request):
     signature = request.GET['signature']
     timestamp = request.GET['timestamp']
     nonce = request.GET['nonce']
@@ -22,6 +31,20 @@ def weixin(request):
     return HttpResponse("False")
 
 
-def _json(request):
-    response_data = {'x': 'xx'}
-    return ResponseUtils.to_json(response_data)
+def process_post(request):
+    signature = request.GET['signature']
+    timestamp = request.GET['timestamp']
+    nonce = request.GET['nonce']
+
+    if not validate.is_weixin_serve(signature, timestamp, nonce):
+        return HttpResponse("False")
+
+    xml_data = ElementTree.fromstring(request.body)
+
+    msg_type = xml_data.find("MsgType").text
+    content = xml_data.find("Content").text
+    from_user=xml_data.find("FromUserName").text
+
+    if msg_type == 'text' and content == 'H':
+        
+
