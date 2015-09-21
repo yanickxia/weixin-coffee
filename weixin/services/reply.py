@@ -1,6 +1,9 @@
 __author__ = 'yann'
 
 from weixin.services import message
+import logging
+
+logger = logging.getLogger(__name__).setLevel(logging.DEBUG)
 
 
 # return xml

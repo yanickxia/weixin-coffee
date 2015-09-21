@@ -6,7 +6,7 @@ from datetime import *
 import requests
 import logging
 
-logger = logging.getLogger(__name__).setLevel(logging.DEBUG)
+logger = logging.getLogger(__name__)
 access_token_url = 'https://api.weixin.qq.com/cgi-bin/token'
 call_back_ip_url = 'https://api.weixin.qq.com/cgi-bin/getcallbackip'
 

@@ -22,7 +22,7 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^favicon\.ico$', RedirectView.as_view(url = '/static/images/favicon.ico')),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),
 ]
 
 urlpatterns += weixin_url.urlpatterns
