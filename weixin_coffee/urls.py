@@ -17,8 +17,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from weixin import urls as weixin_url
 
+from django.views.generic.base import RedirectView
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^favicon\.ico$', RedirectView.as_view(url = '/static/images/favicon.ico')),
 ]
 
 urlpatterns += weixin_url.urlpatterns

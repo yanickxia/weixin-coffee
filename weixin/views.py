@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from utils import ResponseUtils
 from weixin.services import validate
 from xml.etree import ElementTree
-from weixin.services import message
 from django.views.decorators.csrf import csrf_exempt
+from weixin.services import reply
 
 
 def index(request):
@@ -44,8 +44,4 @@ def process_post(request):
 
     xml_data = ElementTree.fromstring(request.body)
 
-    msg_type = xml_data.find("MsgType").text
-    content = xml_data.find("Content").text
-    from_user = xml_data.find("FromUserName").text
-
-    return HttpResponse(message.reply_text_message(from_user, content))
+    return HttpResponse(reply.process_reply(xml_data))
