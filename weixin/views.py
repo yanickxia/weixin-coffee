@@ -48,4 +48,4 @@ def process_post(request):
     content = xml_data.find("Content").text
     from_user = xml_data.find("FromUserName").text
 
-    return message.reply_text_message(from_user, content)
+    return HttpResponse(message.reply_text_message(from_user, content))
