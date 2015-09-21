@@ -3,6 +3,7 @@ from utils import ResponseUtils
 from weixin.services import validate
 from xml.etree import ElementTree
 from weixin.services import message
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -32,6 +33,7 @@ def process_get(request):
     return HttpResponse("False")
 
 
+@csrf_exempt
 def process_post(request):
     signature = request.GET['signature']
     timestamp = request.GET['timestamp']
