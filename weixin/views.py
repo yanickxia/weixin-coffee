@@ -10,6 +10,7 @@ def index(request):
     return HttpResponse("welcome")
 
 
+@csrf_exempt
 def weixin(request):
     if request.method == 'GET':
         return process_get(request)
@@ -33,7 +34,6 @@ def process_get(request):
     return HttpResponse("False")
 
 
-@csrf_exempt
 def process_post(request):
     signature = request.GET['signature']
     timestamp = request.GET['timestamp']
