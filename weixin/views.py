@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from utils import ResponseUtils
 from weixin.services import validate
 from xml.etree import ElementTree
+from weixin.services import message
 
 
 def index(request):
@@ -43,8 +44,6 @@ def process_post(request):
 
     msg_type = xml_data.find("MsgType").text
     content = xml_data.find("Content").text
-    from_user=xml_data.find("FromUserName").text
+    from_user = xml_data.find("FromUserName").text
 
-    if msg_type == 'text' and content == 'H':
-        
-
+    return message.reply_text_message(from_user, content)
