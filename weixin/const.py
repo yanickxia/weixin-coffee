@@ -7,3 +7,8 @@ APP_SECRET = '646bd51c1ce3a4167d4a83fed74ec044'
 WX_ACCOUNT = 'summer_garden'
 
 BAIDU_API_STORE_KEY = '5dd943c43909ce6c862d3524e87100c4'
+
+EMAIL_FROM = 'yann_robot@sina.com'
+EMAIL_PASSWORD = 'yann_robot'
+EMAIL_STMP = 'smtp.sina.com'
+EMIAL_PORT = '25'
