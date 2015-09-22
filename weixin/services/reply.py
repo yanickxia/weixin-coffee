@@ -22,8 +22,8 @@ def process_text(xml_data):
 
     if '天气' in content:
         weather = apistore.get_weather()
-        data = '今天: ' + weather['date'] + ' 天气:[ 日:' + weather['cond']['txt_d'] + ' 夜:' \
-               + weather['cond']['txt_n'] + '] 温度:[ 最高: ' + weather['tmp']['max'] + ' 最低: ' \
+        data = '今天: ' + weather['date'] + ' 天气:[日:' + weather['cond']['txt_d'] + ' 夜:' \
+               + weather['cond']['txt_n'] + '] 温度:[最高: ' + weather['tmp']['max'] + ' 最低: ' \
                + weather['tmp']['min'] + ']'
     else:
         data = content
