@@ -15,7 +15,7 @@ def get_weather():
     if last_updated['date'] is None or (datetime.now() - last_updated['time']) > timedelta(hours=1):
         result = requests.get(url=url, params={'city': 'shanghai'}, headers=header).json()
         key = list(result.keys())[0]
-        last_updated['date'] = result[key][0]['daily_forecast']
+        last_updated['date'] = result[key][0]['daily_forecast'][0]
         last_updated['time'] = datetime.now()
 
     return last_updated['date']
