@@ -25,6 +25,11 @@ def process_text(xml_data):
         data = '今天:[%s]\n天气:[日:%s 夜:%s]\n温度:[最高:%s 最低:%s]' \
                % (weather['date'], weather['cond']['txt_d'], weather['cond']['txt_n'], weather['tmp']['max'],
                   weather['tmp']['min'])
+
+    elif '美女' in content or '妹子' in content or 'mm' in content.lower():
+        beauty = apistore.get_beauty()
+        data = '送你一个妹子大礼包, 想看汉子?抱歉还没实现 \n 图片:%s \n 地址:%s' % (beauty['picUrl'], beauty['url'])
+
     else:
         data = content
 
