@@ -1,6 +1,6 @@
 __author__ = 'yann'
 
-from weixin.caller import apistore
+from weixin.caller import apistore, tuling
 from weixin.services import message
 import logging
 
@@ -30,10 +30,7 @@ def process_text(xml_data):
         beauty = apistore.get_beauty()
         data = '送你一个妹子大礼包, 想看汉子?抱歉还没实现 \n 图片:%s \n 地址:%s' % (beauty['picUrl'], beauty['url'])
 
-    elif '聊天' in content or 'chat' in content.lower():
-        data = '快快进入我的聊天室吧 \n %s' % ('http://115.28.33.36/chat.html')
-
     else:
-        data = content
+        data = tuling.chat(content, from_user)
 
     return message.reply_text_message(from_user, data)
