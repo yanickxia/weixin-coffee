@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),
+    url(r'^chat\.html$', RedirectView.as_view(url='/static/chat.html', permanent=True)),
 ]
 
 urlpatterns += weixin_url.urlpatterns
