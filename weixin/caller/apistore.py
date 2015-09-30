@@ -12,9 +12,12 @@ last_updated = {'time': None, 'date': None}
 
 def get_weather(city='上海'):
     if city != '上海':
-        result = requests.get(url='http://apis.baidu.com/heweather/weather/free', params={'city': city},
-                              headers=header).json()
-        return result[list(result.keys())[0]][0]['daily_forecast'][0]
+        try:
+            result = requests.get(url='http://apis.baidu.com/heweather/weather/free', params={'city': city},
+                                  headers=header).json()
+            return result[list(result.keys())[0]][0]['daily_forecast'][0]
+        except Exception as e:
+            pass
 
     if last_updated['date'] is None or (datetime.now() - last_updated['time']) > timedelta(hours=1):
         result = requests.get(url='http://apis.baidu.com/heweather/weather/free', params={'city': city},
