@@ -21,7 +21,12 @@ def process_text(xml_data):
     data = None
 
     if '天气' in content:
-        weather = apistore.get_weather()
+
+        index = str(content).index("天气")
+        if index == 0:
+            weather = apistore.get_weather()
+        else:
+            weather = apistore.get_weather(content[:index])
         data = '今天:[%s]\n天气:[日:%s 夜:%s]\n温度:[最高:%s 最低:%s]' \
                % (weather['date'], weather['cond']['txt_d'], weather['cond']['txt_n'], weather['tmp']['max'],
                   weather['tmp']['min'])

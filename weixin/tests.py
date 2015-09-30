@@ -26,6 +26,20 @@ class WeatherTest(TestCase):
 
         print(data)
 
+
+        data = reply.process_reply(ElementTree.fromstring("""
+                 <xml>
+         <ToUserName><![CDATA[toUser]]></ToUserName>
+         <FromUserName><![CDATA[fromUser]]></FromUserName>
+         <CreateTime>1348831860</CreateTime>
+         <MsgType><![CDATA[text]]></MsgType>
+         <Content><![CDATA[南京天气]]></Content>
+         <MsgId>1234567890123456</MsgId>
+         </xml>
+        """))
+
+        print(data)
+
     def test_beauty(self):
         data = reply.process_reply(ElementTree.fromstring("""
                  <xml>
